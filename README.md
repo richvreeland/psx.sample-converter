@@ -1,57 +1,21 @@
-# React Artifact Template
+# 🕹️ psx sample converter
 
-Quick template for publishing React artifacts from Claude to GitHub Pages.
+An audio converter that emulates the Sound Processing Unit of the original Sony Playstation.  
+SPU implementation based on [PlayStation: The SPU](https://jsgroth.dev/blog/posts/ps1-spu-part-1/) articles by jsgroth, and the [psx-spx](https://psx-spx.consoledev.net/soundprocessingunitspu/) documentation.
 
-## Quick Start
+## Signal Chain
 
-1. **Clone this template**
-```bash
-   cp -r react-template my-new-project
-   cd my-new-project
-```
+### Pre Low-Pass
+Shape the input spectrum before encoding — define what frequencies enter the chain
 
-2. **Update project name**
-   - In `package.json`: Change `"name"` to your project name
-   - In `vite.config.js`: Update `base: '/your-repo-name/'`
+### Sample Rate
+Decimate to simulate memory-constrained samples. Lower rates = more Gaussian smoothing on playback
 
-3. **Replace the app**
-   - Paste your Claude artifact code into `src/App.jsx`
+### ADPCM Codec
+Authentic PS1 SPU compression — 16-bit → 4-bit using shift + filter prediction (always enabled)
 
-4. **Install dependencies**
-```bash
-   npm install
-```
+### Bit Depth
+Additional quantization after ADPCM decode (16-bit = no extra reduction)
 
-5. **Test locally**
-```bash
-   npm run dev
-```
-
-6. **Create GitHub repo and deploy**
-```bash
-   git remote set-url origin https://github.com/YOUR-USERNAME/your-repo-name.git
-   git add .
-   git commit -m "Initial commit"
-   git push -u origin main
-   npm run deploy
-```
-
-7. **Enable GitHub Pages**
-   - Go to repo Settings → Pages
-   - Select `gh-pages` branch
-   - Save
-
-## Files Included
-
-- Vite + React setup
-- Tailwind CSS configured
-- GitHub Pages deployment script
-- All dependencies pre-configured for Node 17+
-
-## Update Deployments
-```bash
-git add .
-git commit -m "Update"
-git push
-npm run deploy
-```
+### Pitch + Gaussian
+Combined pitch = (sample rate ÷ 44100) × pitch ratio, with SPU pitch counter and 512-entry Gaussian weight table
