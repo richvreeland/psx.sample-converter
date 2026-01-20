@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PSX Sample Converter</title>
+  <title>🕹️ psx sample converter</title>
   <style>
     * {
       box-sizing: border-box;
@@ -12,7 +12,7 @@
     }
 
     body {
-      font-family: 'Courier New', monospace;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
       min-height: 100vh;
       color: #e0e0e0;
@@ -21,6 +21,7 @@
 
     .container {
       max-width: 800px;
+      min-width: 800px;
       margin: 0 auto;
     }
 
@@ -30,7 +31,8 @@
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 3.5rem;
+      font-weight:  400;
       background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -41,7 +43,8 @@
 
     .subtitle {
       color: #888;
-      font-size: 0.9rem;
+      font-size: 1.05rem;
+      text-align:  right;
     }
 
     .drop-zone {
@@ -431,8 +434,8 @@
 <body>
   <div class="container">
     <header>
-      <h1>PSX Sample Converter</h1>
-      <p class="subtitle">Transform your audio to sound like the original PlayStation</p>
+      <h1>🕹️ psx sample converter</h1>
+      <p class="subtitle">Emulate the Sound Processing Unit of the original Sony Playstation.</p>
     </header>
 
     <div class="drop-zone" id="dropZone">
